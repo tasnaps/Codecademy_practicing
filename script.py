@@ -20,20 +20,42 @@ damages = ['Damages not recorded', '100M', 'Damages not recorded', '40M', '27.9M
 deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,318,107,65,19325,51,124,17,1836,125,87,45,133,603,138,3057,74]
 
 # write your update damages function here:
+#Write a function that returns a new list of updated damages where the recorded data is converted to float values and the missing data is retained as "Damages not recorded".
+#Test your function with the data stored in damages.
+def hurrican_damages(damages):
+    uusiLista = []
+    for value in damages:
+        if value=="Damages not recorded":
+            uusiLista.append(value)
+            continue
+        else:
+            if value.endswith("B"):
+                uusiArvoB = float(value[:-1])
+                kaannettyArvoB = uusiArvoB * 1000
+                uusiLista.append(kaannettyArvoB)
+                #print(kaannettyArvoB)
+            if value.endswith("M"):
+                uusiArvoM = float(value[:-1])
+                uusiLista.append(uusiArvoM)
+                #print(uusiArvoM)
 
-
-
-
-
-
-
+hurrican_damages(damages)
+hurrikaani_Lista = []
 # write your construct hurricane dictionary function here:
+#Tee funktio joka rakentaa sanakirjan listoista. avaimet on hurrikaanien nimiä. Arvot on sanakirjoja
+
+#zipped_ages = zip(names, ages)
+
+#names_to_ages = {names: ages for names, ages in zipped_ages}
+
+def hurricaneDict(names, months, years, max_sustained_winds, areas_affected, deaths):
+    zipattuLista = zip(names, months, years, max_sustained_winds, areas_affected, deaths)
+    sanakirja = {names: dict(zipattuLista) for names, months, years, max_sustained_winds, areas_affected, deaths in zipattuLista}
+    return sanakirja
 
 
-
-
-
-
+uusikirja = hurricaneDict(names, months, years, max_sustained_winds, areas_affected, deaths)
+print(uusikirja)
 
 # write your construct hurricane by year dictionary function here:
 
